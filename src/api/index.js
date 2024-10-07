@@ -1,13 +1,14 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import router from '../router'
+import { useRouter } from 'vue-router'
+
+
 const router = useRouter()
 
-const baseURL = 'http://big-event-vue-api-t.itheima.net'
 
 const instance = axios.create({
   // TODO 1. 基础地址，超时时间
-  baseURL:"",
+  baseURL:"http://192.168.43.174:8080",
   timeout:1000
 })
 
@@ -27,7 +28,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (res) => {
     if (res.data.code ===1) {
-      return res
+      return res.data
     }
     ElMessage.error()
     return Promise.reject(res.data)
@@ -39,4 +40,3 @@ instance.interceptors.response.use(
 )
 
 export default instance
-export {baseURL}
