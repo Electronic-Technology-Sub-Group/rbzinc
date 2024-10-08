@@ -9,7 +9,22 @@ const router = createRouter({
       },
       { 
         path:'/',
-        component:() =>import('../Layout/index.vue')
+        component:() =>import('../Layout/index.vue'),
+        redirect:'/layout/header',
+        children:[
+          {
+            path:'/layout/header',
+            component:() =>import('../Layout/header/header.vue')
+          },
+          {
+            path:'/layout/banner',
+            component:() =>import('../Layout/banner/banner.vue'),
+          },
+          {
+            path:'/layout/search',
+            component:() =>import('../Layout/search/search.vue'),
+          }
+        ]
       },
       {
         path:'/poet',

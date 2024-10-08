@@ -4,7 +4,7 @@
 
 <template>
  <div>
-  AO
+这里是ai学习
  </div>
  
 </template>

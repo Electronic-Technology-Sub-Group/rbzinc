@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+// import useStore from 'element-plus/es/components/table/src/store/index.mjs'
 import { useRouter } from 'vue-router'
 
-
+// const useStore = useUserStore()
 const router = useRouter()
 
 
@@ -15,10 +16,9 @@ const instance = axios.create({
 //请求拦截器
 instance.interceptors.request.use(
   (config) => {
-    // TODO 2. 携带token
-    if (store.getters.token) {
-      config.headers['X-Token'] = getToken();
-    }
+    // if (userstore.token) {
+    //   config.headers.Authorization = userstore.token;
+    // }
     return config
   },
   (err) => Promise.reject(err)
