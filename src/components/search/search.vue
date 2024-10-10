@@ -3,7 +3,7 @@ import { ref } from 'vue';
 const input = ref('')
 function handleSearch() {
   if (input.value) {
-    console.log('Searching for:', input.value);
+    // console.log('Searching for:', input.value);
 }
 }
     
