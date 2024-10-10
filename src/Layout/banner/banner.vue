@@ -5,10 +5,10 @@
 <template>
  <div class="body">
   <div class="banner">
-      <a href="">分类</a>
-      <a href="">作品</a>
-      <a href="">作者</a>
-      <a href="">古籍</a>
+      <router-link to="">分类</router-link>
+      <router-link to="">古诗</router-link>
+      <router-link to="">作者</router-link>
+      <router-link to="">名句</router-link>
       <img src="../banner/pic/98903ef06c7b8f687f0dade7485098b.jpg" alt="" width="250px" height="570px" >
   </div>
  
@@ -16,15 +16,7 @@
 </template>
 
 <style scoped lang="scss">
-@mixin block(){
-  margin: 0 auto;
-}
-.body{
-  width: 1200px;
-  height: 900px;
-  background-color: aqua;
-  @include block();
-} 
+
 .banner{
   width: 250px;
   height: 810px;

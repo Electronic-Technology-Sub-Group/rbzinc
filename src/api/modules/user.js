@@ -7,4 +7,3 @@ export const userLoginService = (username,password) => {
 export const userRegisterService = ({username,password}) => {
   return instance.post('/user/register',{username,password})
 }
-

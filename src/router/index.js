@@ -10,19 +10,23 @@ const router = createRouter({
       { 
         path:'/',
         component:() =>import('../Layout/index.vue'),
-        redirect:'/layout/header',
+        redirect:'/layout/home',
         children:[
           {
-            path:'/layout/header',
-            component:() =>import('../Layout/header/header.vue')
+            path:'/layout/home',
+            component:() =>import('../Layout/home/home.vue')
+          },
+          {
+            path:'/components/header',
+            component:() =>import('../components/header/header.vue')
           },
           {
             path:'/layout/banner',
             component:() =>import('../Layout/banner/banner.vue'),
           },
           {
-            path:'/layout/search',
-            component:() =>import('../Layout/search/search.vue'),
+            path:'/components/search',
+            component:() =>import('../components/search/search.vue'),
           }
         ]
       },

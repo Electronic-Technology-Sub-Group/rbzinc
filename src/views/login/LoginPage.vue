@@ -5,7 +5,7 @@
 // const isRegister = ref(true)
 // import { ElForm, ElFormItem, ElInput, ElButton } from 'element-ui';
 import { User, Lock } from '@element-plus/icons-vue'
-import { userRegisterService, userLoginService } from '../../api/modules/user'
+import { userLoginService } from '../../api/modules/user'
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
@@ -13,12 +13,12 @@ const form =ref(null)
 const isRegister = ref(null)
 const formModel = ref({
   username: '',
-  password: '',
+  password: '' ,
 })
 const rules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 5, max: 10, message: '用户名必须是 5-10位 的字符', trigger: 'blur' }
+    { min: 3, max: 10, message: '用户名必须是 5-10位 的字符', trigger: 'blur' }
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
@@ -52,8 +52,8 @@ const rules = {
 const login = async () => {
   await form.value.validate()
   const res = await userLoginService(formModel.value)
+  $router.push('/')
   alert('登录成功')
-  router.push('/')
 }
 
 </script>
@@ -100,12 +100,13 @@ const login = async () => {
             class="button"
             type="primary"
             auto-insert-space
+            style="color: white; background-color: #cbcaca; border-color: #cbcaca;"
             >登录</el-button
           >
         </el-form-item>
         <el-form-item class="flex">
-          <el-link type="info" :underline="false" router-link="{ path: '/register' }">
-            注册 →
+          <el-link type="info" :underline="false">
+            <router-link to="/register" style="text-decoration: none">注册 →</router-link>
           </el-link>
         </el-form-item>
       </el-form>

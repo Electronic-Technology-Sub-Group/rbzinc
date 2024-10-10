@@ -1,41 +1,58 @@
 import { defineConfig } from 'vite'
+import path from 'path'
 import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Inspect from 'vite-plugin-inspect'
 
-
+const pathSrc = path.resolve(__dirname, 'src')
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()]
+      imports: ['vue'],    
+      resolvers: [
+        ElementPlusResolver(),
+        IconsResolver({
+          prefix: 'Icon',
+        }),
+      ],
+      dts: path.resolve(pathSrc, 'auto-imports.d.ts'),
     }),
+
     Components({
-      resolvers: [ElementPlusResolver()],
-    })
+      resolvers: [
+        IconsResolver({
+          enabledCollections: ['ep'],
+        }),
+        ElementPlusResolver(),
+      ],
+
+      dts: path.resolve(pathSrc, 'components.d.ts'),
+    }),
+    Icons({
+      autoInstall: true,
+    }),
+    Inspect(),
   ],
   base: '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
-  
+  },
+  server: {
+    proxy: {
+      '^/api': {
+        target: "http://192.168.43.174:8080", //目标源，目标服务器，真实请求地址
+        changeOrigin: true, //支持跨域
+      
+      }
+    }
+  },
+
 })
-// module.exports = {
-//   devServer: {
-//     proxy: {
-//       '/api': {
-//         target: 'http://backend.server.com', // 目标后端服务器地址
-//         changeOrigin: true, // 改变源地址，使得服务器相信请求来自于代理地址
-//         pathRewrite: {
-//           '^/api': '' // 重写路径，去除`/api`
-//         }
-//       }
-//     }
-//   }
-// };
-
-

@@ -44,7 +44,6 @@ const rules = {
 }
 
 const register = async () => {
-  // 注册成功之前，先进行校验，校验成功 → 请求，校验失败 → 自动提示
   await form.value.validate()
   await userRegisterService(formModel.value)
   alert('注册成功')
@@ -98,13 +97,14 @@ const register = async () => {
             class="button"
             type="primary"
             auto-insert-space
+            style="color: white; background-color: #cbcaca; border-color: #cbcaca;"
           >
             注册
           </el-button>
         </el-form-item>
         <el-form-item class="flex">
-          <el-link type="info" :underline="false" router-link="{ path: '/target-route' }">
-            ← 返回
+          <el-link type="info" :underline="false" >
+            <router-link to="/login" style="text-decoration: none">返回 →</router-link>
           </el-link>
         </el-form-item>
       </el-form>

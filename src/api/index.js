@@ -9,16 +9,17 @@ const router = useRouter()
 
 const instance = axios.create({
   // TODO 1. 基础地址，超时时间
-  baseURL:"http://192.168.43.174:8080",
-  timeout:1000
+  baseURL:"http://192.168.43.174:8080", 
+  headers: {
+    'Content-Type': 'application/json'
+},
+  timeout:2000
 })
 
 //请求拦截器
 instance.interceptors.request.use(
   (config) => {
-    // if (userstore.token) {
-    //   config.headers.Authorization = userstore.token;
-    // }
+
     return config
   },
   (err) => Promise.reject(err)
@@ -30,7 +31,7 @@ instance.interceptors.response.use(
     if (res.data.code ===1) {
       return res.data
     }
-    ElMessage.error()
+    alert("error")
     return Promise.reject(res.data)
   },
   (err) => {

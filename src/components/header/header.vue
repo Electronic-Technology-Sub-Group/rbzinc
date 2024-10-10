@@ -3,26 +3,24 @@
 </script>
 
 <template>
- <div class="body">
     <div class="tleader">
         <div class="leader">
             <div class="left"><strong>古韵传习堂</strong></div>
             <div class="right">
-                <a href="">首页</a>
-                <a href="">书阁</a>
-                <a href="">AI学习</a>
-                <a href="">登录/注册</a>
+                <router-link to="/">首页</router-link>
+                <router-link to="/layout/banner">书阁</router-link>
+                <router-link to="">AI学习</router-link>
+                <router-link to="/login">登录/注册</router-link>
             </div>
         </div>
     </div>
- </div>
  
 </template>
 
 <style scoped lang="scss">
-@mixin block(){
-  margin: 0 auto;
-}
+// @mixin block(){
+//   margin: 0 auto;
+// }
 
 .tleader
 {
@@ -31,27 +29,17 @@
   background-color: #f3f3f3;
   color: black;
   box-shadow: 0 4px 8px rgba(218, 217, 217, 0.568);
+  margin: 0 auto;
 }
-
-
-.body{
-  width: 1200px;
-  height: 900px;
-  background-color: aqua;
-  @include block();
-} 
 
 .leader{
   display: flex;
   width: 1200px;
   height: 90px;
-  // background-color: #ed85e9;
   justify-content: space-between;
-  @include block();
   .left{
     width: 250px;
     height: 90px;
-    // background-color: #68d792;
     color: #aca9a9;
     text-align: center;
     line-height: 90px ;
@@ -60,7 +48,6 @@
   .right{
     width: 800px;
     height: 90px;
-    // background-color: #965959;
     display: flex;
     a{
       text-align: center;
